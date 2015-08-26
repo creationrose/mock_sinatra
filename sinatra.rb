@@ -16,6 +16,10 @@ module Sinatra
     @before_filters ||= {}
   end
 
+  def before(path, &block)
+    before_filters[path] = block
+  end
+
   def paths
     @paths ||= {}
   end
