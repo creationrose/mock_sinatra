@@ -8,4 +8,9 @@ end
 
 run("/hi")
 
-run("/random")  #Error
+before "/hi" do
+  puts "Running before filter"
+  puts "------------------"
+end
+
+#run("/random")  #Error

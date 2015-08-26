@@ -5,10 +5,15 @@ module Sinatra
 
   def run(path)
     if paths.has_key?(path)
+      before_filters[path.call]
       paths[path].call
     else
       raise StandardError.new("No route for #{path}")
     end
+  end
+
+  def before_filters
+    @before_filters ||= {}
   end
 
   def paths
