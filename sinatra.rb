@@ -25,7 +25,8 @@ module Sinatra
   end
 
   def get(path, &block)
-   # puts "Defining a GET request for #{path}"
+    puts "Defining a GET request for #{path}"
+    path = lambda { path }
     paths[path] = block
   end
 
