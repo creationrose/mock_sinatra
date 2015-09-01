@@ -13,4 +13,5 @@ before "/hi" do
   puts "------------------"
 end
 
-#run("/random")  #Error
+run("/hi")
+run("/random")  #Error
