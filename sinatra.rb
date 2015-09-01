@@ -1,12 +1,14 @@
 module Sinatra
+
   def self.included(klass)
-   # puts "Mock Sinatra has been included"
+   puts "Mock Sinatra has been included"
   end
 
-  def run(path)
+  def run(path)    
     if paths.has_key?(path)
-      #before_filters[path.call]
-      p before_filters[path].nil?
+      if before_filters.has_key?(path)
+        before_filters[path].call
+      end      
       paths[path].call
     else
       raise StandardError.new("No route for #{path}")
@@ -18,6 +20,7 @@ module Sinatra
   end
 
   def before(path, &block)
+    puts "Defining a before filter request for #{path}" 
     before_filters[path] = block
   end
 
@@ -26,12 +29,8 @@ module Sinatra
   end
 
   def get(path, &block)
-    puts "Defining a GET request for #{path}
+    puts "Defining a GET request for #{path}"    
     paths[path] = block
-    paths.each_with_index do |(k, v), i|
-      p k, v, i
-    end
-    p paths.has_key?(path)
   end
 
 end
