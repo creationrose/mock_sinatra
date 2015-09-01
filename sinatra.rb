@@ -5,7 +5,8 @@ module Sinatra
 
   def run(path)
     if paths.has_key?(path)
-      before_filters[path.call]
+      #before_filters[path.call]
+      p before_filters[path].nil?
       paths[path].call
     else
       raise StandardError.new("No route for #{path}")
@@ -25,9 +26,12 @@ module Sinatra
   end
 
   def get(path, &block)
-    puts "Defining a GET request for #{path}"
-    path = lambda { path }
+    puts "Defining a GET request for #{path}
     paths[path] = block
+    paths.each_with_index do |(k, v), i|
+      p k, v, i
+    end
+    p paths.has_key?(path)
   end
 
 end
