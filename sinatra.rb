@@ -54,4 +54,16 @@ and
 
 handler.run(self, server_settings) do |server|
 
+But the actual route method is this
+
+def route(verb, path, options = {}, &block)
+  # Because of self.options.host
+  host_name(options.delete(:host)) if options.key?(:host)
+  enable :empty_path_info if path == "" and empty_path_info.nil?
+  signature = compile!(verb, path, block, options)
+  (@routes[verb] ||= []) << signature
+  invoke_hook(:route_added, verb, path, block)
+  signature
+end
+
 =end
