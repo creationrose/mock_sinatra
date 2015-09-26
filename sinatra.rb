@@ -66,4 +66,16 @@ def route(verb, path, options = {}, &block)
   signature
 end
 
+When I start a simple Sinatra app in irb I get something that shows we have a proc.
+[/\A\/\z/, [], [], #<Proc:0x8c62d90@/var/lib/gems/1.9.1/gems/sinatra-1.4.6/lib/sinatra/base.rb:1610>]
+
+that line is part of this ternary
+wrapper                 = block.arity != 0 ?
+          proc { |a,p| unbound_method.bind(a).call(*p) } :
+          proc { |a,p| unbound_method.bind(a).call }
+          
+Aha! A wrapper. 
+          
+
+
 =end
