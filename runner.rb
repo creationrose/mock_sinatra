@@ -24,7 +24,7 @@ run("/random")  #Error
 get '/hi', &block = lambda { puts "I am in the lambda" }
 run("/hi")
 
-before "/hi", &block = lambda { puts "Running before block"; puts "------------------" }
+before "/hi", &block = lambda { puts "Running before in a lambda"; puts "------------------" }
 run("/hi")
 
 run("/random")
