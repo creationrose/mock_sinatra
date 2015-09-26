@@ -43,3 +43,15 @@ end
 
 # show that sinatra module has been run
 include Sinatra
+
+=begin
+
+Here's how Sinatra::Base would do it
+
+routes.each do |pattern, keys, conditions, block|
+
+and
+
+handler.run(self, server_settings) do |server|
+
+=end
