@@ -15,3 +15,13 @@ end
 run("/hi")
 
 run("/random")  #Error
+
+# Do it all again using lambdas
+
+get '/hi', &block = lambda { puts "I am in the lambda"
+run("/hi")
+
+before "/hi", &block = lambda { puts "Running before block"; puts "------------------" }
+run("/hi")
+
+run("/random")
